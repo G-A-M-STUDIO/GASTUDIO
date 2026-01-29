@@ -426,8 +426,7 @@
 
     <header id="header">
         <a href="#" class="brand-name">Ride<span>Relax</span></a>
-        <!-- Telefone atualizado: 5547992342230 -->
-        <a href="https://wa.me/5547992342230" target="_blank" class="nav-btn">Agendar</a>
+        <a href="#contato" class="nav-btn">Contatos</a>
     </header>
 
     <main>
@@ -438,7 +437,6 @@
                     <h1 class="hero-title">A arte de <i>relaxar</i> o corpo e renovar a alma.</h1>
                     <p class="hero-description">Experiências de massagem exclusivas em Bombinhas. Desconecte-se do mundo e reencontre sua paz interior.</p>
                     <div class="btn-group">
-                        <!-- Telefone atualizado: 5547992342230 -->
                         <a href="https://wa.me/5547992342230" target="_blank" class="btn-primary">Agendar Sessão <i class="ph ph-arrow-right"></i></a>
                     </div>
                 </div>
@@ -468,7 +466,7 @@
                 </div>
                 <div class="feature-card fade-in">
                     <i class="ph ph-hands-clapping"></i>
-                    <h3>Terapeutas Experts</h3>
+                    <h3>Terapeuta Especializado</h3>
                     <p>Técnicas especializadas para alívio de tensões e recuperação muscular.</p>
                 </div>
                 <div class="feature-card fade-in">
@@ -483,16 +481,15 @@
     <footer id="contato">
         <div class="footer-content fade-in">
             <div class="contact-info">
-                <h2>Onde estamos</h2>
-                <p style="color: rgba(255,255,255,0.6); margin-bottom: 2rem;">Localizados no coração de Bombinhas, no **TH Studio**.</p>
+                <h2>Onde estamos:</h2>
+                <!-- Frase atualizada conforme solicitado: na prestigiada TH Studio (sem asteriscos) -->
+                <p style="color: rgba(255,255,255,0.6); margin-bottom: 2rem;">Localizados no coração de Bombinhas, na prestigiada TH Studio.</p>
                 <ul class="contact-list">
-                    <!-- Endereço atualizado: R salema, 809 Centro bombinhas -->
                     <li>
                         <a href="https://www.google.com/maps/search/?api=1&query=Rua+Salema+809+Bombinhas+SC" target="_blank" class="contact-item">
                             <i class="ph ph-map-pin"></i> R. Salema, 809, Centro, Bombinhas - SC
                         </a>
                     </li>
-                    <!-- Telefone atualizado: (47) 99234-2230 -->
                     <li>
                         <a href="https://wa.me/5547992342230" target="_blank" class="contact-item">
                             <i class="ph ph-phone"></i> (47) 99234-2230
@@ -506,7 +503,6 @@
                 </ul>
             </div>
             
-            <!-- Mapa Fixo atualizado para Bombinhas -->
             <div class="footer-map-container">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3551.98634812345!2d-48.4842100!3d-27.1458900!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8a56f3456789%3A0x123456789abcdef!2sRua+Salema%2C+809+-+Centro%2C+Bombinhas+-+SC%2C+88215-000!5e0!3m2!1spt-BR!2sbr!4v1706540000000!5m2!1spt-BR!2sbr" 
@@ -522,7 +518,6 @@
         </div>
     </footer>
 
-    <!-- Botões Flutuantes atualizados com novo telefone -->
     <div class="floating-actions" id="floatingActions">
         <a href="https://www.google.com/maps/search/?api=1&query=Rua+Salema+809+Bombinhas+SC" target="_blank" class="fab-btn fab-map" data-tooltip="Abrir no Maps">
             <i class="ph ph-map-pin"></i>
@@ -540,25 +535,21 @@
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            // Header Smart Hide
             if (scrollTop > lastScrollTop && scrollTop > 100) {
                 header.classList.add('nav-hidden');
             } else {
                 header.classList.remove('nav-hidden');
             }
 
-            // Header Style
             if (scrollTop > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
 
-            // Floating Buttons Visibility
             if (scrollTop > 400) floatingActions.classList.add('visible');
             else floatingActions.classList.remove('visible');
 
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
 
-        // Observer para Fade-in
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
