@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Relax Massage - Massagem Premium</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #7b9e89;
+            --secondary-color: #5a7869;
+            --accent-color: #c9b998;
+            --dark-bg: #2c3e3f;
+            --light-bg: #f7f5f2;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --min-touch-target: 48px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Sticky Header with Glassmorph Effect */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(123, 158, 137, 0.15);
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-radius: 60px;
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            box-shadow: 0 12px 40px rgba(123, 158, 137, 0.2);
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 3vw, 1.75rem);
+            font-weight: 700;
+            color: var(--secondary-color);
+            letter-spacing: -0.5px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 0.85rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(123, 158, 137, 0.3);
+            min-height: var(--min-touch-target);
+        }
+
+        .cta-button:hover,
+        .cta-button:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(123, 158, 137, 0.4);
+            outline: none;
+        }
+
+        /* Floating Action Button (Mobile Only) */
+        .fab-button {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 50%;
+            box-shadow: 0 8px 24px rgba(123, 158, 137, 0.5);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid white;
+        }
+
+        .fab-button:active {
+            transform: scale(0.92);
+        }
+
+        .fab-button svg {
+            width: 30px;
+            height: 30px;
+            stroke: white;
+            stroke-width: 2.5;
+        }
+
+        /* Main Section */
+        main {
+            margin-top: 120px;
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero Section with Fluid Grid */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image-container:hover .hero-image {
+            transform: scale(1.05);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(44, 62, 63, 0.85) 0%, transparent 100%);
+            padding: 2rem;
+            color: white;
+        }
+
+        .hero-overlay-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        /* Content Section with Responsive Typography */
+        .content-section {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .title-accent {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .title-accent::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            border-radius: 2px;
+        }
+
+        .main-description {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--text-light);
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(123, 158, 137, 0.2);
+        }
+
+        .feature-icon {
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-text {
+            font-size: clamp(0.95rem, 2vw, 1rem);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Footer (Contact Section) - Touch Optimized */
+        footer {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1e2d2e 100%);
+            color: white;
+            padding: 5rem 2rem 3rem;
+            margin-top: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .contact-card:hover,
+        .contact-card:focus-within {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: rgba(201, 185, 152, 0.3);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(123, 158, 137, 0.3);
+        }
+
+        .contact-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+        }
+
+        .contact-label {
+            font-size: clamp(0.9rem, 2vw, 0.95rem);
+            font-weight: 500;
+            opacity: 0.8;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Touch-Optimized Contact Links */
+        .contact-link {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            display: inline-block;
+            min-height: var(--min-touch-target);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-link:hover,
+        .contact-link:focus {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            outline: 2px solid var(--accent-color);
+            outline-offset: 4px;
+        }
+
+        .contact-link:active {
+            transform: scale(0.98);
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            margin: 3rem 0 2rem;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            opacity: 0.7;
+            font-weight: 300;
+            padding: 0 1rem;
+        }
+
+        /* Responsive Media Queries */
+        
+        /* Tablets and Below */
+        @media (max-width: 1024px) {
+            .hero-image-container {
+                height: 500px;
+            }
+        }
+
+        /* Mobile Devices */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+                width: 95%;
+                top: 12px;
+                border-radius: 50px;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.5rem;
+            }
+
+            /* Show FAB Button on Mobile */
+            .fab-button {
+                display: flex;
+            }
+
+            main {
+                margin-top: 90px;
+                padding: 2rem 1.5rem;
+            }
+
+            /* Mobile Image Optimization */
+            .hero-image-container {
+                height: 350px;
+                border-radius: 16px;
+            }
+
+            .hero-section {
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .hero-overlay {
+                padding: 1.5rem;
+            }
+
+            .content-section {
+                padding: 2rem 0.5rem;
+            }
+
+            .title-accent::after {
+                bottom: -4px;
+                height: 2px;
+            }
+
+            .feature-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 3rem;
+            }
+
+            .feature-card {
+                padding: 2rem 1.5rem;
+            }
+
+            footer {
+                padding: 4rem 1.5rem 2.5rem;
+                margin-top: 4rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media (max-width: 480px) {
+            header {
+                padding: 0.85rem 1.25rem;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1.2rem;
+            }
+
+            .fab-button {
+                width: 56px;
+                height: 56px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .fab-button svg {
+                width: 26px;
+                height: 26px;
+            }
+
+            /* Further Optimize Image for Small Screens */
+            .hero-image-container {
+                height: 300px;
+                border-radius: 12px;
+            }
+
+            .contact-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .contact-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        /* Landscape Mobile Optimization */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero-image-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Header with Glassmorph Effect -->
+    <header>
+        <div class="brand-name">Ride Relax Massage</div>
+        <a href="#contato" class="cta-button" aria-label="Ir para seção de contato">Contato</a>
+    </header>
+
+    <!-- Floating Action Button (Mobile) -->
+    <a href="#contato" class="fab-button" aria-label="Contato rápido">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+        </svg>
+    </a>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-image-container">
+                <img src="https://source.unsplash.com/featured/?massage,wellness" 
+                     alt="Ambiente de massagem relaxante e terapia de bem-estar" 
+                     class="hero-image"
+                     loading="lazy">
+                <div class="hero-overlay">
+                    <p class="hero-overlay-text">Experiência premium de bem-estar e relaxamento</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="content-section">
+            <h1 class="main-title">
+                Revitalize seu <span class="title-accent">corpo e mente</span> com a Ride Relax Massage
+            </h1>
+            
+            <p class="main-description">
+                Oferecemos serviços de massagem premium em um ambiente tranquilo e sofisticado. 
+                Nossos terapeutas altamente qualificados utilizam técnicas especializadas para 
+                proporcionar alívio profundo do estresse, relaxamento muscular e renovação completa 
+                do seu bem-estar físico e mental. Descubra o equilíbrio perfeito entre luxo e cuidado terapêutico.
+            </p>
+
+            <!-- Feature Cards -->
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3 class="feature-title">Ambiente Zen</h3>
+                    <p class="feature-text">Espaço cuidadosamente projetado para proporcionar máximo conforto e tranquilidade.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💆‍♀️</div>
+                    <h3 class="feature-title">Profissionais Certificados</h3>
+                    <p class="feature-text">Equipe especializada com anos de experiência em técnicas de massagem terapêutica.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">Tratamentos Premium</h3>
+                    <p class="feature-text">Protocolos personalizados utilizando produtos de alta qualidade para resultados excepcionais.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (Contact Section) - Touch Optimized -->
+    <footer id="contato">
+        <div class="footer-content">
+            <h2 class="contact-title">Entre em Contato</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                    </div>
+                    <div class="contact-label">Telefone</div>
+                    <a href="tel:+5547999999999" class="contact-link" aria-label="Ligar para Ride Relax Massage">
+                        (47) 99999-9999
+                    </a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>
+                    </div>
+                    <div class="contact-label">E-mail</div>
+                    <a href="mailto:contato@riderelax.com.br" class="contact-link" aria-label="Enviar e-mail para Ride Relax Massage">
+                        contato@riderelax.com.br
+                    </a>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+            
+            <p class="copyright">
+                © 2026 Ride Relax Massage. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
