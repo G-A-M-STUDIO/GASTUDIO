@@ -273,6 +273,16 @@
             margin-bottom: 4rem;
         }
 
+        .section-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -297,6 +307,91 @@
             color: var(--primary);
             margin-bottom: 1.5rem;
             display: block;
+        }
+
+        /* --- About Section (Quem Sou) --- */
+        .about-section {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            height: 400px;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: white;
+            margin-bottom: 1.25rem;
+            line-height: 1.1;
+        }
+
+        .about-content .about-name {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .about-description {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         /* --- Footer --- */
@@ -438,6 +533,22 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .about-image-wrapper {
+                height: 350px;
+            }
+            .about-content {
+                text-align: center;
+            }
+            .about-stats {
+                justify-content: center;
+            }
+            .stat-item {
+                text-align: center;
+            }
             .hero-image-wrapper { height: 400px; }
             .contact-list { align-items: center; }
             .floating-badge { left: 50%; transform: translateX(-50%); width: 80%; bottom: -10px;}
@@ -457,6 +568,9 @@
             .contact-info h2 { font-size: 2rem; }
             .footer-map-container { height: 300px; }
             .features { padding: 4rem 5%; }
+            .about-section { padding: 3rem 5%; }
+            .about-image-wrapper { height: 300px; }
+            .stat-number { font-size: 2rem; }
             .brand-logo { 
                 height: 40px;
                 filter: opacity(0.85) saturate(0.9);
@@ -495,6 +609,38 @@
                         <div>
                             <strong>Studio Premium</strong>
                             <small>Atendimento Personalizado</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quem Sou Section -->
+        <section id="quem-sou" class="about-section">
+            <div class="about-container">
+                <div class="about-image-wrapper fade-in">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop" alt="Guilherme Antonio - Massoterapeuta" class="about-image">
+                    <div class="about-badge">
+                        <i class="ph ph-seal-check"></i> Profissional Certificado
+                    </div>
+                </div>
+                
+                <div class="about-content fade-in">
+                    <h2>Conheça <span class="about-name">Guilherme Antonio</span></h2>
+                    <p class="about-description">
+                        Sou <strong>Guilherme Antonio (Guiga)</strong>, 25 anos, acadêmico de Fisioterapia nos anos finais da graduação. 
+                        Massoterapeuta formado, com domínio em diversas técnicas terapêuticas voltadas para <strong>alívio da dor</strong>, 
+                        <strong>relaxamento muscular</strong> e <strong>reabilitação funcional</strong>.
+                    </p>
+                    <p class="about-description">
+                        Minha paixão é proporcionar bem-estar através do toque terapêutico, combinando conhecimento técnico 
+                        com sensibilidade para entender as necessidades únicas de cada cliente.
+                    </p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Foco no Cliente</span>
                         </div>
                     </div>
                 </div>
