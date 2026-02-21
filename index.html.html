@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Relax Massage | Bem-estar Premium em Bombinhas</title>
+    <meta name="description" content="Massagem terapêutica e relaxante em um ambiente sofisticado. Recupere seu equilíbrio físico e mental em Bombinhas.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --primary: #6B8E78;
+            --primary-dark: #4A6354;
+            --accent: #D4C5A9;
+            --dark-bg: #1A2626;
+            --light-bg: #FAFAF7;
+            --white: #FFFFFF;
+            --text-main: #2C3531;
+            --text-muted: #66706A;
+            --header-height: 80px;
+            --border-radius-lg: 24px;
+            --border-radius-sm: 12px;
+            --shadow-soft: 0 20px 40px -10px rgba(107, 142, 120, 0.15);
+            --shadow-hover: 0 25px 50px -12px rgba(107, 142, 120, 0.25);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-main);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            transition: transform 0.4s ease, background 0.4s ease, padding 0.4s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(250, 250, 247, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        header.nav-hidden { transform: translateY(-100%); }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+        .brand-name span { color: var(--primary); }
+        .brand-logo {
+            height: 80px;
+            display: block;
+            background: transparent;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: .6rem 4%; }
+            .brand-logo { height: 44px; }
+            .nav-btn { padding: .55rem 1.1rem; font-size: .8rem; }
+        }
+        .nav-btn {
+            background-color: var(--text-main);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .nav-btn:hover { background-color: var(--primary); transform: translateY(-2px); }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-label {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero-title i { font-family: 'Playfair Display', serif; font-weight: 400; color: var(--primary); }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 480px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            height: 600px;
+            border-radius: 200px 200px 20px 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+        .hero-image { width: 100%; height: 100%; object-fit: cover; }
+
+        .floating-badge {
+            position: absolute;
+            bottom: 40px; left: -30px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            max-width: 280px;
+        }
+
+        .badge-icon {
+            background: var(--accent);
+            color: white;
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 10px 20px rgba(107, 142, 120, 0.3);
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
+
+        .features {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+        .feature-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; display: block; }
+
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h2 { color: white; font-size: 3rem; margin-bottom: 2rem; }
+
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .contact-item:hover { color: var(--accent); }
+
+        .footer-map-container {
+            width: 100%;
+            height: 450px;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .footer-map-container iframe { width: 100%; height: 100%; border: 0; }
+
+        .copyright {
+            margin-top: 4rem;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .floating-actions {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .floating-actions.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+
+        .fab-btn {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: white;
+            position: relative;
+        }
+        .fab-btn:hover { transform: scale(1.1); }
+        .fab-map { background: var(--text-main); color: var(--accent); }
+        .fab-whatsapp { background: #25D366; }
+
+        .fab-btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 75px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+        .fab-btn:hover::after { opacity: 1; }
+
+        /* About / Quem Sou - Balão */
+        .about-section { padding: 0 5% 4rem; }
+        .about-balloon-wrapper {
+            max-width: 560px;
+            margin: 0;
+        }
+        .about-balloon {
+            background: white;
+            border-radius: 32px 32px 32px 4px;
+            padding: 3rem 3.5rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(107,142,120,.1);
+            position: relative;
+        }
+        .about-balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 20px 20px 0 0;
+            border-color: white transparent transparent transparent;
+            filter: drop-shadow(0 4px 3px rgba(107,142,120,.08));
+        }
+        .balloon-avatar {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 4px 14px rgba(107,142,120,.35);
+        }
+        .about-age { color: var(--primary); font-size: .88rem; font-weight: 600; letter-spacing: .06em; margin-bottom: 1.5rem; }
+        .about-description { color: var(--text-muted); margin-bottom: 1rem; }
+
+        @media (max-width: 992px) {
+            .about-balloon { padding: 2rem 1.75rem; border-radius: 24px 24px 24px 4px; }
+        }
+
+        @media (max-width: 992px) {
+            .hero-container, .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-image-wrapper { height: 400px; }
+            .contact-list { align-items: center; }
+            .floating-badge { left: 50%; transform: translateX(-50%); width: 80%; bottom: -10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <a href="#" class="brand-name">
+            <img src="logo.png" alt="Ride Relax Massage Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <h2 style="display:none; color: var(--primary); font-size: 1.5rem; margin: 0;">Ride Relax</h2>
+        </a>
+        <a href="#contato" class="nav-btn">Contatos</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content fade-in">
+                    <span class="hero-label">Bem-estar e Equilíbrio</span>
+                    <h1 class="hero-title">A arte de <i>relaxar</i> o corpo e renovar a alma.</h1>
+                    <p class="hero-description">Experiências de massagem exclusivas em Bombinhas. Desconecte-se do mundo e reencontre sua paz interior.</p>
+                    <div class="btn-group">
+                        <a href="https://wa.me/5547992342230" target="_blank" class="btn-primary">Agendar Sessão <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper fade-in">
+                    <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=1000&auto=format&fit=crop" alt="Massoterapia Profissional em Bombinhas" class="hero-image">
+                    <div class="floating-badge">
+                        <div class="badge-icon"><i class="ph ph-star-fill"></i></div>
+                        <div>
+                            <strong>Studio Premium</strong>
+                            <small>Atendimento Personalizado</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicos" class="features">
+            <div class="section-header fade-in">
+                <span class="section-subtitle">Nossos Diferenciais</span>
+                <h2>Sinta a Diferença</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <i class="ph ph-plant"></i>
+                    <h3>Ambiente Zen</h3>
+                    <p>Espaço climatizado com som ambiente e aromas que induzem ao relaxamento profundo.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="ph ph-hands-clapping"></i>
+                    <h3>Terapeuta Especializado</h3>
+                    <p>Técnicas especializadas para alívio de tensões e recuperação muscular.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <i class="ph ph-sparkle"></i>
+                    <h3>Produtos Nobres</h3>
+                    <p>Óleos e cremes de alta qualidade para o cuidado da sua pele e saúde.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section" id="sobre">
+            <div class="about-balloon-wrapper fade-in">
+                <div class="about-balloon">
+                    <div class="balloon-avatar">G</div>
+                    <span class="hero-label" style="margin-bottom: .4rem;">Quem sou?</span>
+                    <h2 style="margin-bottom: .2rem; font-size: 1.4rem;">Guilherme <span style="font-style:italic; color: var(--primary);">(Guiga)</span></h2>
+                    <p class="about-age">25 anos · Massoterapeuta</p>
+                    <p class="about-description" style="font-size: .95rem;">Guilherme Antonio <strong>(Guiga)</strong>, 25 anos, acadêmico de Fisioterapia e massoterapeuta. Acredito que cuidar do corpo é essencial para viver melhor. Trabalho com diferentes técnicas para aliviar dores, reduzir o estresse e devolver leveza ao seu dia a dia. Atendimento personalizado, com atenção aos detalhes e foco total em você.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato">
+        <div class="footer-content fade-in">
+            <div class="contact-info">
+                <h2>Onde estamos:</h2>
+                <p style="color: rgba(255,255,255,0.6); margin-bottom: 2rem;">Localizados no coração de Bombinhas, na prestigiada TH Studio.</p>
+                <ul class="contact-list">
+                    <li>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Rua+Salema+809+Bombinhas+SC" target="_blank" class="contact-item">
+                            <i class="ph ph-map-pin"></i> R. Salema, 809, Centro, Bombinhas - SC
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/5547992342230" target="_blank" class="contact-item">
+                            <i class="ph ph-phone"></i> (47) 99234-2230
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/5547992342230" target="_blank" class="contact-item">
+                            <i class="ph ph-whatsapp-logo"></i> Chamar no WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="footer-map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3551.98634812345!2d-48.4842100!3d-27.1458900!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8a56f3456789%3A0x123456789abcdef!2sRua+Salema%2C+809+-+Centro%2C+Bombinhas+-+SC%2C+88215-000!5e0!3m2!1spt-BR!2sbr!4v1706540000000!5m2!1spt-BR!2sbr" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 Ride Relax Massage. Design exclusivo.</p>
+        </div>
+    </footer>
+
+    <div class="floating-actions" id="floatingActions">
+        <a href="https://www.google.com/maps/search/?api=1&query=Rua+Salema+809+Bombinhas+SC" target="_blank" class="fab-btn fab-map" data-tooltip="Abrir no Maps">
+            <i class="ph ph-map-pin"></i>
+        </a>
+        <a href="https://wa.me/5547992342230" target="_blank" class="fab-btn fab-whatsapp" data-tooltip="Falar no WhatsApp">
+            <i class="ph ph-whatsapp-logo"></i>
+        </a>
+    </div>
+
+    <script>
+        const header = document.getElementById('header');
+        const floatingActions = document.getElementById('floatingActions');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) header.classList.add('nav-hidden');
+            else header.classList.remove('nav-hidden');
+            if (scrollTop > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+            if (scrollTop > 400) floatingActions.classList.add('visible');
+            else floatingActions.classList.remove('visible');
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
