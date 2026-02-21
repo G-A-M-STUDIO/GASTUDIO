@@ -16,7 +16,6 @@
 
     <style>
         :root {
-            /* Paleta Refinada */
             --primary: #6B8E78;       
             --primary-dark: #4A6354;
             --accent: #D4C5A9;        
@@ -26,7 +25,6 @@
             --text-main: #2C3531;
             --text-muted: #66706A;
             
-            /* Espaçamentos e UI */
             --header-height: 80px;
             --border-radius-lg: 24px;
             --border-radius-sm: 12px;
@@ -35,11 +33,7 @@
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
             scroll-behavior: smooth;
@@ -61,7 +55,6 @@
             color: var(--text-main);
         }
 
-        /* --- Animations --- */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -73,11 +66,9 @@
             transform: translateY(0);
         }
 
-        /* --- Header --- */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             width: 100%;
             padding: 1.5rem 5%;
             z-index: 1000;
@@ -97,9 +88,7 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
         }
 
-        header.nav-hidden {
-            transform: translateY(-100%);
-        }
+        header.nav-hidden { transform: translateY(-100%); }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
@@ -110,9 +99,8 @@
             text-decoration: none;
         }
 
-        .brand-name span {
-            color: var(--primary);
-        }
+        .brand-name span { color: var(--primary); }
+        .brand-logo { height: 42px; display: block; }
 
         .nav-btn {
             background-color: var(--text-main);
@@ -130,7 +118,6 @@
             transform: translateY(-2px);
         }
 
-        /* --- Hero Section --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -219,12 +206,7 @@
             font-size: 1.5rem;
         }
 
-        /* --- Buttons --- */
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
 
         .btn-primary {
             background: var(--primary);
@@ -245,7 +227,6 @@
             transform: translateY(-3px);
         }
 
-        /* --- Features --- */
         .features {
             padding: 6rem 5%;
             max-width: 1400px;
@@ -283,7 +264,6 @@
             display: block;
         }
 
-        /* --- Footer --- */
         footer {
             background-color: var(--dark-bg);
             color: white;
@@ -322,9 +302,7 @@
             transition: var(--transition);
         }
 
-        .contact-item:hover {
-            color: var(--accent);
-        }
+        .contact-item:hover { color: var(--accent); }
 
         .footer-map-container {
             width: 100%;
@@ -351,7 +329,6 @@
             color: rgba(255,255,255,0.4);
         }
 
-        /* --- Floating Actions --- */
         .floating-actions {
             position: fixed;
             bottom: 30px;
@@ -387,10 +364,7 @@
             position: relative;
         }
 
-        .fab-btn:hover {
-            transform: scale(1.1);
-        }
-
+        .fab-btn:hover { transform: scale(1.1); }
         .fab-map { background: var(--text-main); color: var(--accent); }
         .fab-whatsapp { background: #25D366; }
 
@@ -425,7 +399,10 @@
 <body>
 
     <header id="header">
-        <a href="#" class="brand-name">Ride<span>Relax</span></a>
+        <a href="#" class="brand-name">
+            <img src="logo.png" alt="Ride Relax Massage Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <h2 style="display:none; color: var(--primary); font-size: 1.5rem; margin: 0;">Ride Relax</h2>
+        </a>
         <a href="#contato" class="nav-btn">Contatos</a>
     </header>
 
@@ -482,7 +459,6 @@
         <div class="footer-content fade-in">
             <div class="contact-info">
                 <h2>Onde estamos:</h2>
-                <!-- Frase atualizada conforme solicitado: na prestigiada TH Studio (sem asteriscos) -->
                 <p style="color: rgba(255,255,255,0.6); margin-bottom: 2rem;">Localizados no coração de Bombinhas, na prestigiada TH Studio.</p>
                 <ul class="contact-list">
                     <li>
